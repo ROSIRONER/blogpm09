@@ -47,7 +47,7 @@ require __DIR__ . '/templates/header.php';
         <span><?= e($post['created_at']) ?></span>
     </div>
     <?php if (!empty($post['image_path'])): ?>
-        <img class="cover" src="/<?= e($post['image_path']) ?>" alt="Изображение поста">
+        <img class="cover" src="<?= e(appUrl($post['image_path'])) ?>" alt="Изображение поста">
     <?php endif; ?>
     <div class="content"><?= nl2br(e($post['content'])) ?></div>
     <button class="like-button" data-label="поста">❤️ <span>0</span></button>

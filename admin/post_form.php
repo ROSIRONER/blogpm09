@@ -111,7 +111,7 @@ require __DIR__ . '/../templates/header.php';
         <label>Текст <textarea name="content" rows="10" required><?= e($post['content']) ?></textarea></label>
         <label>Картинка <input type="file" name="image" accept="image/png,image/jpeg,image/webp"></label>
         <?php if (!empty($post['image_path'])): ?>
-            <img class="thumb" src="/<?= e($post['image_path']) ?>" alt="Текущая картинка">
+            <img class="thumb" src="<?= e(appUrl($post['image_path'])) ?>" alt="Текущая картинка">
         <?php endif; ?>
         <button type="submit">Сохранить</button>
     </form>

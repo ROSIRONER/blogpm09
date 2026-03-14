@@ -21,7 +21,7 @@ require __DIR__ . '/../templates/header.php';
 ?>
 <section>
     <h1>Последние комментарии</h1>
-    <a class="button-link" href="/admin/posts.php">К постам</a>
+    <a class="button-link" href="<?= e(appUrl('admin/posts.php')) ?>">К постам</a>
     <table>
         <thead>
             <tr><th>ID</th><th>Пост</th><th>Автор</th><th>Дата</th><th>Текст</th><th></th></tr>
@@ -35,7 +35,7 @@ require __DIR__ . '/../templates/header.php';
                 <td><?= e($comment['created_at']) ?></td>
                 <td><?= e(excerpt($comment['content'], 120)) ?></td>
                 <td>
-                    <form method="post" action="/admin/delete_comment.php" onsubmit="return confirm('Удалить комментарий?');">
+                    <form method="post" action="<?= e(appUrl('admin/delete_comment.php')) ?>" onsubmit="return confirm('Удалить комментарий?');">
                         <input type="hidden" name="csrf_token" value="<?= e(csrfToken()) ?>">
                         <input type="hidden" name="id" value="<?= (int) $comment['id'] ?>">
                         <button type="submit">Удалить</button>

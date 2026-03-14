@@ -63,7 +63,7 @@ require __DIR__ . '/templates/header.php';
         <div class="alert error"><?= e($error) ?></div>
     <?php endforeach; ?>
 
-    <form method="post" action="/register.php">
+    <form method="post" action="<?= e(appUrl('register.php')) ?>">
         <input type="hidden" name="csrf_token" value="<?= e(csrfToken()) ?>">
         <label>Имя <input type="text" name="name" value="<?= e($name) ?>" required></label>
         <label>Email <input type="email" name="email" value="<?= e($email) ?>" required></label>

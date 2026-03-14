@@ -37,9 +37,9 @@ require __DIR__ . '/templates/header.php';
     <?php foreach ($posts as $post): ?>
         <article class="card post-card">
             <?php if (!empty($post['image_path'])): ?>
-                <img class="cover" src="/<?= e($post['image_path']) ?>" alt="Изображение поста">
+                <img class="cover" src="<?= e(appUrl($post['image_path'])) ?>" alt="Изображение поста">
             <?php endif; ?>
-            <h2><a href="/post.php?id=<?= (int) $post['id'] ?>"><?= e($post['title']) ?></a></h2>
+            <h2><a href="<?= e(appUrl('post.php')) ?>?id=<?= (int) $post['id'] ?>"><?= e($post['title']) ?></a></h2>
             <p><?= nl2br(e(excerpt($post['content'], 200))) ?></p>
             <div class="meta">
                 <span>Автор: <?= e($post['author_name']) ?></span>
@@ -52,11 +52,11 @@ require __DIR__ . '/templates/header.php';
 
     <nav class="pagination">
         <?php if ($page > 1): ?>
-            <a href="/index.php?page=<?= $page - 1 ?>">Предыдущая</a>
+            <a href="<?= e(appUrl('index.php')) ?>?page=<?= $page - 1 ?>">Предыдущая</a>
         <?php endif; ?>
         <span>Страница <?= $page ?> из <?= $totalPages ?></span>
         <?php if ($page < $totalPages): ?>
-            <a href="/index.php?page=<?= $page + 1 ?>">Следующая</a>
+            <a href="<?= e(appUrl('index.php')) ?>?page=<?= $page + 1 ?>">Следующая</a>
         <?php endif; ?>
     </nav>
 </section>

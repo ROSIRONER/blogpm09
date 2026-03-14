@@ -7,6 +7,39 @@ function e(string $value): string
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+function appBaseUrl(): string
+{
+    static $baseUrl;
+    if ($baseUrl !== null) {
+        return $baseUrl;
+    }
+
+    $appRoot = realpath(__DIR__ . '/..');
+    $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? realpath((string) $_SERVER['DOCUMENT_ROOT']) : false;
+
+    if ($appRoot && $docRoot && str_starts_with($appRoot, $docRoot)) {
+        $relative = str_replace('\\', '/', substr($appRoot, strlen($docRoot)) ?: '');
+        $relative = '/' . trim($relative, '/');
+        $baseUrl = $relative === '/' ? '' : $relative;
+    } else {
+        $baseUrl = '';
+    }
+
+    return $baseUrl;
+}
+
+function appUrl(string $path = ''): string
+{
+    $base = appBaseUrl();
+    $cleanPath = ltrim($path, '/');
+
+    if ($cleanPath === '') {
+        return $base !== '' ? $base : '/';
+    }
+
+    return ($base !== '' ? $base : '') . '/' . $cleanPath;
+}
+
 function currentUser(): ?array
 {
     if (!isset($_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['role'])) {
@@ -33,7 +66,11 @@ function isAdmin(): bool
 
 function redirect(string $path): void
 {
-    header('Location: ' . $path);
+    if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+        header('Location: ' . $path);
+    } else {
+        header('Location: ' . appUrl($path));
+    }
     exit;
 }
 

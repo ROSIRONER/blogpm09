@@ -13,7 +13,7 @@
 
 ## Быстрый старт (локально)
 1. Создайте БД и импортируйте `schema.sql` (см. подробную инструкцию в `docs/DB_SETUP.md`).
-2. Настройте БД через переменные окружения (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`) или оставьте дефолтные значения из `config/db.php`.
+2. Настройте БД: либо переменные окружения (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`), либо скопируйте `config/db.credentials.example.php` в `config/db.credentials.php` и заполните данные.
 3. Запустите PHP-сервер:
    ```bash
    php -S 0.0.0.0:8080
@@ -26,3 +26,7 @@
 - Настройка БД (пошагово): `docs/DB_SETUP.md`
 - Запуск на XAMPP: `docs/XAMPP_SETUP.md`
 - Деплой на Beget: `docs/BEGET_DEPLOY.md`
+
+
+### Примечание для Beget
+На Beget удобнее использовать `config/db.credentials.php`, чтобы не зависеть от переменных окружения.

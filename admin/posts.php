@@ -20,8 +20,8 @@ require __DIR__ . '/../templates/header.php';
 <section>
     <h1>Управление постами</h1>
     <div class="admin-links">
-        <a class="button-link" href="/admin/post_form.php">Добавить пост</a>
-        <a class="button-link" href="/admin/comments.php">Комментарии</a>
+        <a class="button-link" href="<?= e(appUrl('admin/post_form.php')) ?>">Добавить пост</a>
+        <a class="button-link" href="<?= e(appUrl('admin/comments.php')) ?>">Комментарии</a>
     </div>
     <table>
         <thead>
@@ -35,8 +35,8 @@ require __DIR__ . '/../templates/header.php';
                 <td><?= e($post['author_name']) ?></td>
                 <td><?= e($post['created_at']) ?></td>
                 <td>
-                    <a href="/admin/post_form.php?id=<?= (int) $post['id'] ?>">Редактировать</a>
-                    <form class="inline" method="post" action="/admin/delete_post.php" onsubmit="return confirm('Удалить пост?');">
+                    <a href="<?= e(appUrl('admin/post_form.php')) ?>?id=<?= (int) $post['id'] ?>">Редактировать</a>
+                    <form class="inline" method="post" action="<?= e(appUrl('admin/delete_post.php')) ?>" onsubmit="return confirm('Удалить пост?');">
                         <input type="hidden" name="csrf_token" value="<?= e(csrfToken()) ?>">
                         <input type="hidden" name="id" value="<?= (int) $post['id'] ?>">
                         <button type="submit">Удалить</button>

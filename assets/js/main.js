@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       formData.append('post_id', commentsSection.getAttribute('data-post-id') || '0');
 
       try {
-        const response = await fetch('/add_comment.php', {
+        const response = await fetch(`${window.APP_BASE_URL}/add_comment.php`, {
           method: 'POST',
           body: formData,
           headers: { 'X-Requested-With': 'XMLHttpRequest' }

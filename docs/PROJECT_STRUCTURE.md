@@ -14,6 +14,7 @@ blogpm09/
 ├── config/
 │   ├── bootstrap.php
 │   ├── db.php
+│   ├── db.credentials.example.php
 │   └── helpers.php
 ├── templates/
 │   ├── header.php
@@ -45,6 +46,7 @@ blogpm09/
 - `register.php`, `login.php`, `logout.php` — модуль аутентификации.
 - `add_comment.php` — AJAX endpoint для добавления комментария.
 - `config/db.php` — подключение PDO к MySQL.
+- `config/db.credentials.example.php` — шаблон локальных кредов для Beget/хостинга.
 - `config/helpers.php` — хелперы (`e`, `csrfToken`, `isAdmin`, ...).
 - `templates/header.php`, `templates/footer.php` — общий каркас страниц.
 - `admin/*` — админ-модуль (CRUD постов + модерация комментариев).

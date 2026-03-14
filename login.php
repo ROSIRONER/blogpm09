@@ -43,7 +43,7 @@ require __DIR__ . '/templates/header.php';
     <?php foreach ($errors as $error): ?>
         <div class="alert error"><?= e($error) ?></div>
     <?php endforeach; ?>
-    <form method="post" action="/login.php">
+    <form method="post" action="<?= e(appUrl('login.php')) ?>">
         <input type="hidden" name="csrf_token" value="<?= e(csrfToken()) ?>">
         <label>Логин или Email <input type="text" name="login" value="<?= e($login) ?>" required></label>
         <label>Пароль <input type="password" name="password" required></label>

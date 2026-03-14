@@ -10,24 +10,24 @@ $user = currentUser();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title><?= isset($pageTitle) ? e($pageTitle) . ' | ' : '' ?>Блог</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="<?= e(appUrl('assets/css/style.css')) ?>">
 </head>
 <body>
 <header class="site-header">
     <div class="container nav-wrap">
-        <a class="brand" href="/index.php">Блог</a>
+        <a class="brand" href="<?= e(appUrl('index.php')) ?>">Блог</a>
         <button class="menu-toggle" aria-label="Открыть меню">☰</button>
         <nav class="main-nav">
-            <a href="/index.php">Главная</a>
+            <a href="<?= e(appUrl('index.php')) ?>">Главная</a>
             <?php if ($user): ?>
                 <span class="hello">Привет, <?= e($user['name']) ?></span>
                 <?php if ($user['role'] === 'admin'): ?>
-                    <a href="/admin/posts.php">Админка</a>
+                    <a href="<?= e(appUrl('admin/posts.php')) ?>">Админка</a>
                 <?php endif; ?>
-                <a href="/logout.php">Выйти</a>
+                <a href="<?= e(appUrl('logout.php')) ?>">Выйти</a>
             <?php else: ?>
-                <a href="/login.php">Войти</a>
-                <a href="/register.php">Регистрация</a>
+                <a href="<?= e(appUrl('login.php')) ?>">Войти</a>
+                <a href="<?= e(appUrl('register.php')) ?>">Регистрация</a>
             <?php endif; ?>
         </nav>
     </div>
