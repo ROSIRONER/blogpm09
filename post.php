@@ -50,7 +50,7 @@ require __DIR__ . '/templates/header.php';
         <img class="cover" src="<?= e(appUrl($post['image_path'])) ?>" alt="Изображение поста">
     <?php endif; ?>
     <div class="content"><?= nl2br(e($post['content'])) ?></div>
-    <button class="like-button" data-label="поста">❤️ <span>0</span></button>
+    <button class="like-button" data-like-key="post-<?= (int) $post['id'] ?>" data-label="поста">❤️ <span>0</span></button>
 </article>
 
 <section class="comments" data-post-id="<?= (int) $post['id'] ?>">
@@ -74,7 +74,7 @@ require __DIR__ . '/templates/header.php';
                     <span><?= e($comment['created_at']) ?></span>
                 </div>
                 <p><?= nl2br(e($comment['content'])) ?></p>
-                <button class="like-button" data-label="комментария">👍 <span>0</span></button>
+                <button class="like-button" data-like-key="comment-<?= (int) $comment['id'] ?>" data-label="комментария">👍 <span>0</span></button>
             </article>
         <?php endforeach; ?>
     </div>

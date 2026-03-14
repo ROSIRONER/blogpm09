@@ -45,7 +45,7 @@ require __DIR__ . '/templates/header.php';
                 <span>Автор: <?= e($post['author_name']) ?></span>
                 <span><?= e($post['created_at']) ?></span>
             </div>
-            <button class="like-button" data-label="поста">❤️ <span>0</span></button>
+            <button class="like-button" data-like-key="post-<?= (int) $post['id'] ?>" data-label="поста">❤️ <span>0</span></button>
         </article>
     <?php endforeach; ?>
     </div>
