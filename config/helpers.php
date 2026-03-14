@@ -7,6 +7,29 @@ function e(string $value): string
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+function startsWith(string $haystack, string $needle): bool
+{
+    if ($needle === '') {
+        return true;
+    }
+
+    if (function_exists('str_starts_with')) {
+        return str_starts_with($haystack, $needle);
+    }
+
+    return substr($haystack, 0, strlen($needle)) === $needle;
+}
+
+function strLenSafe(string $text): int
+{
+    return function_exists('mb_strlen') ? mb_strlen($text) : strlen($text);
+}
+
+function strSubSafe(string $text, int $start, int $length): string
+{
+    return function_exists('mb_substr') ? mb_substr($text, $start, $length) : substr($text, $start, $length);
+}
+
 function appBaseUrl(): string
 {
     static $baseUrl;
@@ -17,7 +40,7 @@ function appBaseUrl(): string
     $appRoot = realpath(__DIR__ . '/..');
     $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? realpath((string) $_SERVER['DOCUMENT_ROOT']) : false;
 
-    if ($appRoot && $docRoot && str_starts_with($appRoot, $docRoot)) {
+    if ($appRoot && $docRoot && startsWith($appRoot, $docRoot)) {
         $relative = str_replace('\\', '/', substr($appRoot, strlen($docRoot)) ?: '');
         $relative = '/' . trim($relative, '/');
         $baseUrl = $relative === '/' ? '' : $relative;
@@ -66,7 +89,7 @@ function isAdmin(): bool
 
 function redirect(string $path): void
 {
-    if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+    if (startsWith($path, 'http://') || startsWith($path, 'https://')) {
         header('Location: ' . $path);
     } else {
         header('Location: ' . appUrl($path));
@@ -98,9 +121,9 @@ function verifyCsrfToken(?string $token): bool
 
 function excerpt(string $text, int $length = 200): string
 {
-    if (mb_strlen($text) <= $length) {
+    if (strLenSafe($text) <= $length) {
         return $text;
     }
 
-    return mb_substr($text, 0, $length) . '...';
+    return strSubSafe($text, 0, $length) . '...';
 }
