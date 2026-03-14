@@ -33,8 +33,9 @@ require __DIR__ . '/templates/header.php';
         <p>Пока нет постов.</p>
     <?php endif; ?>
 
+    <div class="post-grid">
     <?php foreach ($posts as $post): ?>
-        <article class="card">
+        <article class="card post-card">
             <?php if (!empty($post['image_path'])): ?>
                 <img class="cover" src="/<?= e($post['image_path']) ?>" alt="Изображение поста">
             <?php endif; ?>
@@ -47,6 +48,7 @@ require __DIR__ . '/templates/header.php';
             <button class="like-button" data-label="поста">❤️ <span>0</span></button>
         </article>
     <?php endforeach; ?>
+    </div>
 
     <nav class="pagination">
         <?php if ($page > 1): ?>
