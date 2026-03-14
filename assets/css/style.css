@@ -1,0 +1,73 @@
+:root {
+  --bg: #f5f7fb;
+  --card: #fff;
+  --text: #1b1f23;
+  --muted: #6c7280;
+  --accent: #315efb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+.container {
+  width: min(1000px, 92%);
+  margin: 0 auto;
+}
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #dde2ea;
+  position: sticky;
+  top: 0;
+}
+.nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+.brand { font-weight: 700; text-decoration: none; color: var(--text); }
+.main-nav { display: flex; gap: 14px; align-items: center; }
+.main-nav a { text-decoration: none; color: var(--text); }
+main { padding: 20px 0 40px; }
+.card, .post-full, .auth-box, table {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(16,24,40,.08);
+}
+.cover { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+.meta { display: flex; gap: 14px; color: var(--muted); font-size: .9rem; margin-bottom: 8px; }
+.pagination { display: flex; gap: 12px; align-items: center; }
+.auth-box form { display: grid; gap: 10px; }
+input, textarea, button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccd4df;
+}
+button, .button-link {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+.like-button { width: auto; margin-top: 10px; background: #eef2ff; color: #27357b; }
+.alert.error { background: #ffe2e2; color: #9d1b1b; padding: 10px; border-radius: 6px; margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; overflow: hidden; }
+th, td { padding: 10px; border-bottom: 1px solid #e8edf4; text-align: left; }
+.inline { display: inline; }
+.thumb { width: 120px; border-radius: 6px; margin-top: 6px; }
+.menu-toggle { display: none; width: auto; }
+@media (max-width: 700px) {
+  .menu-toggle { display: block; }
+  .main-nav { display: none; flex-direction: column; align-items: flex-start; background: #fff; position: absolute; right: 4%; top: 56px; padding: 12px; border: 1px solid #dbe2ef; border-radius: 8px; }
+  .main-nav.open { display: flex; }
+  .meta { flex-direction: column; gap: 4px; }
+  table, thead, tbody, th, td, tr { display: block; }
+  thead { display: none; }
+  tr { margin-bottom: 10px; border-bottom: 1px solid #e8edf4; }
+  td { border: none; }
+}
