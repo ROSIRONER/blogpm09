@@ -63,6 +63,21 @@ function appUrl(string $path = ''): string
     return ($base !== '' ? $base : '') . '/' . $cleanPath;
 }
 
+
+
+function assetUrl(string $path): string
+{
+    $relativePath = ltrim($path, '/');
+    $filePath = realpath(__DIR__ . '/../' . $relativePath);
+    $url = appUrl($relativePath);
+
+    if ($filePath && is_file($filePath)) {
+        return $url . '?v=' . filemtime($filePath);
+    }
+
+    return $url;
+}
+
 function currentUser(): ?array
 {
     if (!isset($_SESSION['user_id'], $_SESSION['user_name'], $_SESSION['role'])) {
